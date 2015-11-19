@@ -8,19 +8,14 @@
 class PhysicObject {
     public:
         PhysicObject(const Point& position);
-        PhysicObject();
         virtual ~PhysicObject();
         
-        virtual void Translate(const Vector2<float>& t) = 0;
-
-        void setPosition(const Point& position);
+        virtual void Translate(const Vector2<float>& t);
 
     protected:
         Point position;
         Vector2<float> velocity;
         Vector2<float> acceleration;
-
-        float angle;
 };
 
 #endif

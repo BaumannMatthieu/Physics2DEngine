@@ -1,5 +1,5 @@
-#ifndef __POLYGON_H
-#define __POLYGON_H
+#ifndef __POLYGON2D_H
+#define __POLYGON2D_H
 
 #include <vector>
 #include <cmath>
@@ -11,17 +11,15 @@
 #include "Point.h"
 #include "Math.h"
 
-class Polygon : public PhysicObject {
+class Polygon2D : public PhysicObject {
     public:
-        Polygon(const std::vector<Point>& points, const Point& position);
-        Polygon();
-        virtual ~Polygon();
+        Polygon2D(const std::vector<Point>& points, const Point& position);
+        virtual ~Polygon2D();
 
-        static Polygon CreateRandom(const Point& position, const float dimension, 
+        static Polygon2D CreateRandom(const Point& position, const float dimension, 
                                     const float epsilon, const float rho, 
                                     const unsigned int n) {
-            Polygon polygon;
-            
+        
             float* dtheta = new float[n];
             float* k = new float[n];
             float* theta = new float[n];
@@ -36,6 +34,8 @@ class Polygon : public PhysicObject {
                 sum_dtheta += dtheta[i];
             }
 
+            std::vector<Point> points;
+
             for(unsigned int i = 0; i < n; i++) {
                 k[i] = sum_dtheta/(2*M_PI);
                 if(i == 0) {
@@ -43,18 +43,16 @@ class Polygon : public PhysicObject {
                 } else {
                     theta[i] = theta[i - 1] + dtheta[i]/k[i];
                 }
-                polygon.points.push_back(Point(position.x + Math::cos(theta[i])*rad[i],
-                                               position.y + Math::sin(theta[i])*rad[i]));
+                points.push_back(Point(position.x + Math::cos(theta[i])*rad[i],
+                                       position.y + Math::sin(theta[i])*rad[i]));
             }
-
-            polygon.position = position;
 
             delete[] dtheta;
             delete[] k;
             delete[] theta;
             delete[] rad;
             
-            return polygon; 
+            return Polygon2D(points, position);
         }
 
         virtual void Translate(const Vector2<float>& t);
@@ -62,6 +60,7 @@ class Polygon : public PhysicObject {
     
     private:
         std::vector<Point> points;
+        float angle;
 };
 
 #endif
