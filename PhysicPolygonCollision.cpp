@@ -58,7 +58,8 @@ bool PhysicPolygonCollision::Compute(const PhysicObject& firstPhysicObj,
     return true;
 }
 
-const std::vector<Vector2<float> > PhysicPolygonCollision::computeAxis(const Polygon2D& polygon) const {
+const std::vector<Vector2<float> > PhysicPolygonCollision::computeAxis(
+const Polygon2D& polygon) const {
     const std::vector<Point>& points = polygon.getPoints();
     std::vector<Vector2<float> > axis;
 
@@ -108,4 +109,8 @@ bool PhysicPolygonCollision::intersection(const std::pair<float, float>& p1,
     }
 
     return false;
+}
+
+const Vector2<float>& PhysicPolygonCollision::getMinimunTranslationVector() const {
+    return this->minimumTranslation;
 }

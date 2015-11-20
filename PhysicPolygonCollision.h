@@ -11,7 +11,9 @@ class PhysicPolygonCollision : public PhysicCollision {
         
         virtual bool Compute(const PhysicObject& firstPhysicObj, 
                              const PhysicObject& secondPhysicObj);
-    
+   
+        const Vector2<float>& getMinimunTranslationVector() const;
+ 
     private:
         const std::vector<Vector2<float> > computeAxis(const Polygon2D& polygon) const;
         std::pair<float, float> projection(const Polygon2D& polygon,
