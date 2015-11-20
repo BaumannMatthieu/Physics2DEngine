@@ -1,5 +1,5 @@
 #OBJS specifies which files to compile as part of the project 
-OBJS = main.cpp Vector2.h Matrix22.h PhysicObject.cpp PhysicObject.h Point.h Polygon2D.h Polygon2D.cpp Rectangle2D.h Rectangle2D.cpp PhysicCollision.cpp PhysicCollision.h PhysicRectCollision.h PhysicRectCollision.cpp
+OBJS = main.cpp Vector2.h Matrix22.h PhysicObject.cpp PhysicObject.h Point.h Polygon2D.h Polygon2D.cpp Rectangle2D.h Rectangle2D.cpp PhysicCollision.cpp PhysicCollision.h PhysicRectCollision.h PhysicRectCollision.cpp PhysicPolygonCollision.h PhysicPolygonCollision.cpp
 
 #CC specifies which compiler we're using 
 CC = g++ 

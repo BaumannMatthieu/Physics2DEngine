@@ -1,6 +1,5 @@
-#include <iostream>
-#include "Rectangle2D.h"
 #include "PhysicRectCollision.h"
+#include "Rectangle2D.h"
 
 PhysicRectCollision::PhysicRectCollision() {
     
