@@ -54,7 +54,7 @@ Polygon2D Polygon2D::CreateRandom(const Point& position, const float dimension,
 void Polygon2D::Translate(const Vector2<float>& t) {
     std::vector<Point>::iterator it;
 
-    for(it = this->points.begin(); it != this->points.end(); it++) {
+    for(it = this->points.begin(); it != this->points.end(); ++it) {
         *it = *it + t;
     }
 
@@ -68,7 +68,7 @@ void Polygon2D::Rotate(const float angle) {
     
     std::vector<Point>::iterator it;
    
-    for(it = this->points.begin(); it != this->points.end(); it++) {
+    for(it = this->points.begin(); it != this->points.end(); ++it) {
         *it = *it - this->position;
         Point p(*it);
             
@@ -76,6 +76,10 @@ void Polygon2D::Rotate(const float angle) {
         
         *it = *it + this->position;
     } 
+}
+
+const std::vector<Point>& Polygon2D::getPoints() const {
+    return this->points;
 }
 
 

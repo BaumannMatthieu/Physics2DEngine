@@ -13,7 +13,8 @@ class Polygon2D : public PhysicObject {
                                     const unsigned int n);
         virtual void Translate(const Vector2<float>& t);
         void Rotate(const float angle);
-    
+
+        const std::vector<Point>& getPoints() const;    
     private:
         std::vector<Point> points;
         float angle;
