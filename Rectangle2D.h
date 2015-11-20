@@ -12,6 +12,11 @@ class Rectangle2D : public PhysicObject {
 
         virtual void Translate(const Vector2<float>& t);
 
+        Rectangle2D operator=(const Rectangle2D& rect);
+
+        float getWidth() const;
+        float getHeight() const;
+
     private:
         float width;
         float height;

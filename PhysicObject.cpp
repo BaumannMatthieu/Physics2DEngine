@@ -12,6 +12,10 @@ PhysicObject::~PhysicObject() {
 
 }
 
+Vector2<float> PhysicObject::getPosition() const {
+    return this->position;
+}
+
 void PhysicObject::Translate(const Vector2<float>& t) {
     this->position = this->position + t;
 }

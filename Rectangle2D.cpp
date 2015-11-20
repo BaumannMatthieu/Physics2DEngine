@@ -24,6 +24,23 @@ void Rectangle2D::Translate(const Vector2<float>& t) {
     PhysicObject::Translate(t);
 }
 
+float Rectangle2D::getWidth() const {
+    return this->width;
+}
+
+float Rectangle2D::getHeight() const {
+    return this->height;
+}
+
+Rectangle2D Rectangle2D::operator=(const Rectangle2D& rect) {
+    this->width = rect.width;
+    this->height = rect.height;
+    for(unsigned int i = 0; i < 4; i++) {
+        this->points[i] = rect.points[i];
+    }
+    return *this;
+}
+
 Rectangle2D::~Rectangle2D() {
 
 }

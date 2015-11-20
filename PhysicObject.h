@@ -11,6 +11,8 @@ class PhysicObject {
         virtual ~PhysicObject();
         
         virtual void Translate(const Vector2<float>& t);
+    
+        Vector2<float> getPosition() const;
 
     protected:
         Point position;

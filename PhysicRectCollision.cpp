@@ -13,14 +13,11 @@ PhysicRectCollision::~PhysicRectCollision() {
 /** Collision between a Rectangle and a Rectangle */
 bool PhysicRectCollision::Compute(const PhysicObject& firstPhysicObj, 
                                   const PhysicObject& secondPhysicObj) {
-    /*
-    Rectangle2D firstRect = static_cast<Rectangle2D>(firstPhysicObj);      
-    Rectangle2D secondRect = static_cast<Rectangle2D>(secondPhysicObj);
+    const Rectangle2D& firstRect = static_cast<const Rectangle2D&>(firstPhysicObj);      
+    const Rectangle2D& secondRect = static_cast<const Rectangle2D&>(secondPhysicObj);
 
-    return ((firstRect.position.x + firstRect.width > secondRect.position.x &&
-            firstRect.position.y + firstRect.height > secondRect.position.y) ||
-           (secondRect.position.x + secondRect.width > firstRect.position.x &&
-            secondRect.position.y + secondRect.height > firstRect.position.y));      
-    */
-    return true;
+    return ((firstRect.getPosition().x + firstRect.getWidth() > secondRect.getPosition().x &&
+            firstRect.getPosition().y + firstRect.getHeight() > secondRect.getPosition().y) ||
+           (secondRect.getPosition().x + secondRect.getWidth() > firstRect.getPosition().x &&
+            secondRect.getPosition().y + secondRect.getHeight() > firstRect.getPosition().y));      
 }
