@@ -14,6 +14,8 @@ class Polygon2D : public PhysicObject {
         virtual void Translate(const Vector2<float>& t);
         void Rotate(const float angle);
 
+        virtual const PhysicCollision* getPhysicCollision(const PhysicObject& physicObject) const;
+
         const std::vector<Point>& getPoints() const;    
     private:
         std::vector<Point> points;

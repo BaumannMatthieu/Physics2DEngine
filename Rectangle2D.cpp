@@ -2,7 +2,7 @@
 #include "Rectangle2D.h"
 
 Rectangle2D::Rectangle2D() : PhysicObject(Point(0.f, 0.f)) {
-
+    this->objectType = RECTANGLE;
 }
 
 Rectangle2D::Rectangle2D(const Vector2<float>& position, const float width,
@@ -24,6 +24,9 @@ void Rectangle2D::Translate(const Vector2<float>& t) {
     PhysicObject::Translate(t);
 }
 
+const PhysicCollision* Rectangle2D::getPhysicCollision(const PhysicObject& physicObject) const {
+    return NULL;
+}
 float Rectangle2D::getWidth() const {
     return this->width;
 }

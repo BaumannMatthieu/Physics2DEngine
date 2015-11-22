@@ -5,7 +5,12 @@
 
 #include <string>
 #include <iostream>
+
 #include "System.h"
+#include "PhysicRender.h"
+#include "PhysicContext.h"
+
+#include "PhysicPolygonCollision.h"
 
 System::System(const unsigned int screenWidth, const unsigned int screenHeight, const std::string strNameWindow ) {
     this->screenWidth = screenWidth;
@@ -24,30 +29,18 @@ void System::start() {
     System::initializeSDLWindow();
     System::initializeOpenGLContext();
 
+    PhysicContext physicContext;
+    PhysicRender physicRender(&physicContext);
+
     while(!finish)
     {
         SDL_WaitEvent(&this->events);
 
         if(this->events.window.event == SDL_WINDOWEVENT_CLOSE)
             finish = true;
-  
-        //Clear color buffer
-        glClear(GL_COLOR_BUFFER_BIT);
 
-        //Render quad
-        glBegin(GL_QUADS);
-            glColor3f(1.f, 1.f, 0.f);
-            glVertex2f(0.0f, 50.0f);
-            glColor3f(0.f, 1.f, 0.f);
-            glVertex2f(100.f, 0.f);
-            glColor3f(0.f, 1.f, 1.f);
-            glVertex2f(100.f,  100.f);
-            glColor3f(0.f, 0.f, 1.f);
-            glVertex2f(0.f,  100.f);
-        glEnd();
+        physicRender.draw(this->window);  
 
-        //Update screen
-        SDL_GL_SwapWindow(this->window);
      }
 
     System::destroyOpenGLContext();

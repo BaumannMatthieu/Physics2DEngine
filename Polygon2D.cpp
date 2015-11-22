@@ -2,11 +2,13 @@
 #include "Math.h"
 
 #include "Polygon2D.h"
+#include "PhysicPolygonCollision.h"
 
 Polygon2D::Polygon2D(const std::vector<Point>& points, const Point& position) :
 PhysicObject(position) {
     this->points = points;
     this->angle = 0.f;
+    this->objectType = POLYGON;
 }
 
 Polygon2D::~Polygon2D() {
@@ -76,6 +78,24 @@ void Polygon2D::Rotate(const float angle) {
         
         *it = *it + this->position;
     } 
+}
+
+
+const PhysicCollision* Polygon2D::getPhysicCollision(const PhysicObject& physicObject) const {
+    const PhysicObjectType objectType = physicObject.getObjectType();
+    PhysicCollision* physicCollision = NULL;
+    
+    if(objectType == POLYGON || objectType == RECTANGLE) {
+        physicCollision = new PhysicPolygonCollision();
+    } else if(objectType == POINT) {
+        
+    } else if(objectType == SEGMENT) {
+
+    } else { /* circle */
+
+    }
+
+    return physicCollision;
 }
 
 const std::vector<Point>& Polygon2D::getPoints() const {

@@ -5,6 +5,7 @@
 
 Point2D::Point2D(const Point& position) : PhysicObject(position) {
     this->point = position;
+    this->objectType = POINT;
 }
 
 Point2D::~Point2D() {
@@ -16,4 +17,6 @@ void Point2D::Translate(const Vector2<float>& t) {
     PhysicObject::Translate(t);
 }
    
-
+const PhysicCollision* Point2D::getPhysicCollision(const PhysicObject& physicObject) const {
+    return NULL;
+}

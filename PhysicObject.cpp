@@ -19,3 +19,11 @@ Vector2<float> PhysicObject::getPosition() const {
 void PhysicObject::Translate(const Vector2<float>& t) {
     this->position = this->position + t;
 }
+        
+const PhysicObjectType PhysicObject::getObjectType() const {
+    return this->objectType;
+}
+
+const PhysicCollision* PhysicObject::getPhysicCollision(const PhysicObject& physicObject) const {
+    return NULL;
+}
