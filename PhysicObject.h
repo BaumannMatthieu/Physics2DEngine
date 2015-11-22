@@ -4,6 +4,7 @@
 #include <vector>
 #include "Vector2.h"
 #include "Point.h"
+#include "PhysicDrawable.h"
 
 typedef enum PhysicObjectType {
             POLYGON, 
@@ -15,7 +16,7 @@ typedef enum PhysicObjectType {
 
 class PhysicCollision;
 
-class PhysicObject {
+class PhysicObject : public PhysicDrawable {
     public:
         PhysicObject(const Point& position);
         virtual ~PhysicObject();
@@ -26,7 +27,8 @@ class PhysicObject {
         const PhysicObjectType getObjectType() const;
 
         virtual const PhysicCollision* getPhysicCollision(const PhysicObject& physicObject) const;
-        
+        virtual void draw() const { };
+
     protected:
         Point position;
         Vector2<float> velocity;

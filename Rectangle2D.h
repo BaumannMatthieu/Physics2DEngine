@@ -13,7 +13,11 @@ class Rectangle2D : public PhysicObject {
         virtual void Translate(const Vector2<float>& t);
         
         virtual const PhysicCollision* getPhysicCollision(const PhysicObject& physicObject) const;
+        virtual void draw() const {
 
+        }
+    
+    
         Rectangle2D operator=(const Rectangle2D& rect);
 
         float getWidth() const;

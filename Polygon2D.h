@@ -15,6 +15,7 @@ class Polygon2D : public PhysicObject {
         void Rotate(const float angle);
 
         virtual const PhysicCollision* getPhysicCollision(const PhysicObject& physicObject) const;
+        virtual void draw() const;
 
         const std::vector<Point>& getPoints() const;    
     private:

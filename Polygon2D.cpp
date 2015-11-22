@@ -98,6 +98,16 @@ const PhysicCollision* Polygon2D::getPhysicCollision(const PhysicObject& physicO
     return physicCollision;
 }
 
+void Polygon2D::draw() const {
+    glBegin(GL_QUADS);
+    for(unsigned int i = 0; i < this->points.size(); i++) {
+        glColor3f(1.f, 1.f, 0.f);
+        std::cout << this->points[i].x << std::endl;
+        glVertex2f(this->points[i].x, this->points[i].y);
+    } 
+    glEnd();
+}
+
 const std::vector<Point>& Polygon2D::getPoints() const {
     return this->points;
 }

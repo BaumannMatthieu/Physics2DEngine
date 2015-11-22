@@ -15,18 +15,11 @@ PhysicRender::~PhysicRender() {
 void PhysicRender::draw(SDL_Window* window) const {
     //Clear color buffer
     glClear(GL_COLOR_BUFFER_BIT);
-
-    glBegin(GL_QUADS);
-        glColor3f(1.f, 1.f, 0.f);
-        glVertex2f(0.0f, 50.0f);
-        glColor3f(0.f, 1.f, 0.f);
-        glVertex2f(100.f, 0.f);
-        glColor3f(0.f, 1.f, 1.f);
-        glVertex2f(100.f,  100.f);
-        glColor3f(0.f, 0.f, 1.f);
-        glVertex2f(0.f,  100.f);
-    glEnd();
-
+    const std::vector<PhysicObject>& physicObjects = this->physicContext->getPhysicObjects();
+    std::cout << "ok " << physicObjects.size() << std::endl;
+    for(unsigned int i = 0; i < physicObjects.size(); i++) {
+        physicObjects[i].draw();
+    }
     //Update screen
     SDL_GL_SwapWindow(window);
 }

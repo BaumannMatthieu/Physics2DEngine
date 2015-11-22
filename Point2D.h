@@ -14,7 +14,9 @@ class Point2D : public PhysicObject {
 
         virtual void Translate(const Vector2<float>& t);
         virtual const PhysicCollision* getPhysicCollision(const PhysicObject& physicObject) const;
-    
+        virtual void draw() const {
+
+        }
     private:
         Point point;
 };
