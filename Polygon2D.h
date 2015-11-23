@@ -5,12 +5,14 @@
 
 class Polygon2D : public PhysicObject {
     public:
-        Polygon2D(const std::vector<Point>& points, const Point& position);
+        Polygon2D(const std::vector<Point>& points, const Point& position,
+                  const Color& color);
         virtual ~Polygon2D();
 
-        static Polygon2D CreateRandom(const Point& position, const float dimension, 
+        static Polygon2D* CreateRandom(const Point& position, const float dimension, 
                                     const float epsilon, const float rho, 
-                                    const unsigned int n);
+                                    const unsigned int n,
+                                    const Color& color);
         virtual void Translate(const Vector2<float>& t);
         void Rotate(const float angle);
 

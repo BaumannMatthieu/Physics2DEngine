@@ -1,12 +1,9 @@
 #include <iostream>
 #include "Rectangle2D.h"
 
-Rectangle2D::Rectangle2D() : PhysicObject(Point(0.f, 0.f)) {
-    this->objectType = RECTANGLE;
-}
-
 Rectangle2D::Rectangle2D(const Vector2<float>& position, const float width,
-                         const float height) : PhysicObject(position) {
+                         const float height,
+                         const Color& color) : PhysicObject(position, color) {
     this->width = width;
     this->height = height;
     
@@ -14,6 +11,8 @@ Rectangle2D::Rectangle2D(const Vector2<float>& position, const float width,
     this->points[1] = Point(position.x + width, position.y);
     this->points[2] = Point(position.x + width, position.y + height);
     this->points[3] = Point(position.x, position.y + height);
+    
+    this->objectType = RECTANGLE;
 }
 
 void Rectangle2D::Translate(const Vector2<float>& t) {
@@ -27,6 +26,7 @@ void Rectangle2D::Translate(const Vector2<float>& t) {
 const PhysicCollision* Rectangle2D::getPhysicCollision(const PhysicObject& physicObject) const {
     return NULL;
 }
+
 float Rectangle2D::getWidth() const {
     return this->width;
 }

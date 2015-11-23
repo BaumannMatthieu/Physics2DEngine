@@ -18,7 +18,7 @@ class PhysicCollision;
 
 class PhysicObject : public PhysicDrawable {
     public:
-        PhysicObject(const Point& position);
+        PhysicObject(const Point& position, const Color& color);
         virtual ~PhysicObject();
         
         virtual void Translate(const Vector2<float>& t);
@@ -26,8 +26,8 @@ class PhysicObject : public PhysicDrawable {
         Vector2<float> getPosition() const;
         const PhysicObjectType getObjectType() const;
 
-        virtual const PhysicCollision* getPhysicCollision(const PhysicObject& physicObject) const;
-        virtual void draw() const { };
+        virtual const PhysicCollision* getPhysicCollision(const PhysicObject& physicObject) const = 0;
+        virtual void draw() const = 0;
 
     protected:
         Point position;

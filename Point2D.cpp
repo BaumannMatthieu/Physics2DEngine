@@ -3,7 +3,7 @@
 #include "PhysicObject.h"
 #include "Point2D.h"
 
-Point2D::Point2D(const Point& position) : PhysicObject(position) {
+Point2D::Point2D(const Point& position, const Color& color) : PhysicObject(position, color) {
     this->point = position;
     this->objectType = POINT;
 }

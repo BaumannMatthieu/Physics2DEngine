@@ -5,9 +5,9 @@
 
 class Rectangle2D : public PhysicObject {
     public:
-        Rectangle2D();
         Rectangle2D(const Vector2<float>& position,
-                    const float width, const float height);
+                    const float width, const float height,
+                    const Color& color);
         virtual ~Rectangle2D();
 
         virtual void Translate(const Vector2<float>& t);

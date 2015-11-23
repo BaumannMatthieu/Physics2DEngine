@@ -4,18 +4,20 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 
+#include "Color.h"
+
 class PhysicDrawable {
     public:
-        PhysicDrawable() {
-
-        };
+        PhysicDrawable(const Color& color) {
+            this->color = color;
+        }
         virtual ~PhysicDrawable() {
 
         }
     
         virtual void draw() const = 0;
-    private:
-        float r, g, b;
+    protected:
+        Color color;
 };
 
 #endif

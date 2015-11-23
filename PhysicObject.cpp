@@ -2,7 +2,8 @@
 
 #include "PhysicObject.h"
 
-PhysicObject::PhysicObject(const Point& position) {
+PhysicObject::PhysicObject(const Point& position, const Color& color)
+ : PhysicDrawable(color) {
     this->position = position;
     this->velocity = Vector2<float>(0.f, 0.f); 
     this->acceleration = Vector2<float>(0.f, 0.f); 
@@ -24,6 +25,6 @@ const PhysicObjectType PhysicObject::getObjectType() const {
     return this->objectType;
 }
 
-const PhysicCollision* PhysicObject::getPhysicCollision(const PhysicObject& physicObject) const {
-    return NULL;
-}
+//const PhysicCollision* PhysicObject::getPhysicCollision(const PhysicObject& physicObject) const {
+//    return NULL;
+//}

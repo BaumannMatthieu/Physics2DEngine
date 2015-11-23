@@ -10,12 +10,12 @@ class PhysicContext {
         PhysicContext();
         ~PhysicContext();
 
-        const std::vector<PhysicObject>& getPhysicObjects() const;
+        const std::vector<PhysicObject*>& getPhysicObjects() const;
     private:
-        void addPhysicObject(const PhysicObject& physicObject);
+        void addPhysicObject(PhysicObject* physicObject);
         
-        std::vector<PhysicObject> objects;
-        std::map<std::pair<const PhysicObject*, const PhysicObject*>,
+        std::vector<PhysicObject*> objects;
+        std::map<std::pair<PhysicObject*, PhysicObject*>,
                 const PhysicCollision*> physicCollisions;
 };
 

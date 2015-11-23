@@ -4,8 +4,8 @@
 #include "Polygon2D.h"
 #include "PhysicPolygonCollision.h"
 
-Polygon2D::Polygon2D(const std::vector<Point>& points, const Point& position) :
-PhysicObject(position) {
+Polygon2D::Polygon2D(const std::vector<Point>& points, const Point& position,
+                     const Color& color) : PhysicObject(position, color) {
     this->points = points;
     this->angle = 0.f;
     this->objectType = POLYGON;
@@ -15,9 +15,10 @@ Polygon2D::~Polygon2D() {
     this->points.clear();
 }
 
-Polygon2D Polygon2D::CreateRandom(const Point& position, const float dimension, 
+Polygon2D* Polygon2D::CreateRandom(const Point& position, const float dimension, 
                                   const float epsilon, const float rho, 
-                                  const unsigned int n) {        
+                                  const unsigned int n,
+                                  const Color& color) {        
     float* dtheta = new float[n];
     float* k = new float[n];
     float* theta = new float[n];
@@ -50,7 +51,7 @@ Polygon2D Polygon2D::CreateRandom(const Point& position, const float dimension,
     delete[] theta;
     delete[] rad;
     
-    return Polygon2D(points, position);
+    return new Polygon2D(points, position, color);
 }
 
 void Polygon2D::Translate(const Vector2<float>& t) {
@@ -101,8 +102,7 @@ const PhysicCollision* Polygon2D::getPhysicCollision(const PhysicObject& physicO
 void Polygon2D::draw() const {
     glBegin(GL_QUADS);
     for(unsigned int i = 0; i < this->points.size(); i++) {
-        glColor3f(1.f, 1.f, 0.f);
-        std::cout << this->points[i].x << std::endl;
+        glColor3f(this->color.r, this->color.g, this->color.b);
         glVertex2f(this->points[i].x, this->points[i].y);
     } 
     glEnd();

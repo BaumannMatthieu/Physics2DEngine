@@ -9,7 +9,7 @@
 class Point2D : public PhysicObject {
 
     public:
-        Point2D(const Point& position);
+        Point2D(const Point& position, const Color& color);
         virtual ~Point2D();
 
         virtual void Translate(const Vector2<float>& t);
