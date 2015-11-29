@@ -69,6 +69,10 @@ class Vector2 {
         inline static float cross(const Vector2<T>& v1, const Vector2<T>& v2) {
             return v1.x*v2.x + v1.y*v2.y;
         }
+        
+        inline static const Vector2<float> opposite(const Vector2<T>& v) {
+            return Vector2<float>(-v.x, -v.y);
+        }
 
     public:
         T x;

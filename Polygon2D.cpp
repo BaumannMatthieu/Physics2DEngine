@@ -71,8 +71,8 @@ void Polygon2D::Translate(const Vector2<float>& t) {
 
 void Polygon2D::Rotate(const float angle) {
     this->angle += angle;
-    Matrix22<float> rotationMatrix(Math::cos(this->angle), Math::sin(this->angle),
-                                   -Math::sin(this->angle), Math::cos(this->angle));
+    Matrix22<float> rotationMatrix(Math::cos(angle), Math::sin(angle),
+                                   -Math::sin(angle), Math::cos(angle));
     
     std::vector<Point>::iterator it;
    
@@ -104,8 +104,13 @@ PhysicCollision* Polygon2D::getPhysicCollision(const PhysicObject& physicObject)
     return physicCollision;
 }
 
+void Polygon2D::move() {
+    PhysicObject::move();
+//    this->Rotate(0.01f);
+}
+
 void Polygon2D::draw() const {
-    glBegin(GL_QUADS);
+    glBegin(GL_POLYGON);
     for(unsigned int i = 0; i < this->points.size(); i++) {
         glColor3f(this->color.r, this->color.g, this->color.b);
         glVertex2f(this->points[i].x, this->points[i].y);

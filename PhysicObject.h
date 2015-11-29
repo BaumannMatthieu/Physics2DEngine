@@ -26,8 +26,9 @@ class PhysicObject : public PhysicDrawable {
         Vector2<float> getPosition() const;
         const PhysicObjectType getObjectType() const;
 
-        void move();
+        virtual void move();
         void setVelocity(const Vector2<float>& velocity);
+        const Vector2<float>& getVelocity() const;
 
         virtual PhysicCollision* getPhysicCollision(const PhysicObject& physicObject) const = 0;
         virtual void draw() const = 0;

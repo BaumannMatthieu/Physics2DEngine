@@ -10,26 +10,33 @@
 #include "Color.h"
 
 PhysicContext::PhysicContext() {
-    Polygon2D* poly1 = Polygon2D::CreateRandom(Point(100.f, 100.f),
-                                              50.f, 0.1f, 10.f, 5,
+
+    for(int i = 0; i < 20; i++) {
+        Polygon2D* poly = Polygon2D::CreateRandom(Point(Math::random(0.f, 800.f),
+                                                      Math::random(0.f, 600.f)),
+                                                50.f, 0.1, 10.f, 3, 
+                                                Color(1.f, 0.f, 0.f));
+        poly->setVelocity(Vector2<float>(Math::random(-1.f, 1.f), Math::random(-1.f, 1.f)));
+        PhysicContext::addPhysicObject(poly);      
+    }
+    /*Polygon2D* poly1 = Polygon2D::CreateRandom(Point(100.f, 100.f),
+                                              50.f, 0.1f, 10.f, 3,
                                               Color(1.f, 0.f, 0.f));
     Polygon2D* poly2 = Polygon2D::CreateRandom(Point(500.f, 500.f),
-                                              50.f, 0.1f, 10.f, 5,
+                                              50.f, 0.1f, 10.f, 3,
                                               Color(0.f, 1.f, 0.f));
-    poly1->setVelocity(Vector2<float>(1.0f, 1.5f));
-    poly2->setVelocity(Vector2<float>(-1.0f, -1.0f));
+    poly2->setVelocity(Vector2<float>(-0.7f, -0.7f));
 
 
-    PhysicContext::addPhysicObject(poly1);      
-    PhysicContext::addPhysicObject(poly2);       
+    PhysicContext::addPhysicObject(poly2);   */    
 }
 
 void PhysicContext::update() {
     /** Move all objects of the context */
     std::vector<PhysicObject*>::iterator it;
-    for(it = this->objects.begin(); it != this->objects.end(); ++it) {
-        (*it)->move();
-    }
+        for(it = this->objects.begin(); it != this->objects.end(); ++it) {
+            (*it)->move();
+        }
 
     /** Analyze if there are collisions between objects and correct them */
     std::map<std::pair<PhysicObject*, PhysicObject*>,
@@ -43,8 +50,17 @@ void PhysicContext::update() {
 
         if(collision->Compute(*firstObj, *secondObj)) {
             const Vector2<float>& mtv = collision->getMinimunTranslationVector();
-            //firstObj->Translate(mtv);
-            firstObj->setVelocity(mtv);  
+            std::cout << mtv.norme() << std::endl;
+            secondObj->Translate(mtv*1.01f);
+
+            const Vector2<float>& secondObjVel = secondObj->getVelocity();
+            const Vector2<float>& firstObjVel = firstObj->getVelocity();
+            Vector2<float> mtvbis = mtv;
+            mtvbis.normalize();
+            
+            secondObj->setVelocity(mtvbis*secondObjVel.norme());  
+            firstObj->setVelocity(Vector2<float>::opposite(mtvbis)*firstObjVel.norme());  
+            
             std::cout << "two objects collide !" << std::endl;
         }
     }

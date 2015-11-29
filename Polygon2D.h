@@ -17,6 +17,8 @@ class Polygon2D : public PhysicObject {
                                     const Color& color);
         virtual void Translate(const Vector2<float>& t);
         void Rotate(const float angle);
+        
+        virtual void move();
 
         virtual PhysicCollision* getPhysicCollision(const PhysicObject& physicObject) const;
         virtual void draw() const;
