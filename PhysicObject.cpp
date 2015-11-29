@@ -13,6 +13,10 @@ PhysicObject::~PhysicObject() {
 
 }
 
+void PhysicObject::move() {
+    this->Translate(this->velocity);
+}
+
 Vector2<float> PhysicObject::getPosition() const {
     return this->position;
 }
@@ -25,6 +29,6 @@ const PhysicObjectType PhysicObject::getObjectType() const {
     return this->objectType;
 }
 
-//const PhysicCollision* PhysicObject::getPhysicCollision(const PhysicObject& physicObject) const {
-//    return NULL;
-//}
+void PhysicObject::setVelocity(const Vector2<float>& velocity) {
+    this->velocity = velocity;
+}

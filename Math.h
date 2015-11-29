@@ -1,5 +1,5 @@
-#ifndef __MATH_H_
-#define __MATH_H_
+#ifndef __MATHH_H_
+#define __MATHH_H_
 
 #include <cmath>
 #include <cstdlib>
@@ -8,20 +8,24 @@
 #define M_PI 3.14159265358979323846
 
 namespace Math {
-    float cos(const float alpha) {
+    inline float cos(const float alpha) {
         return std::cos(alpha);    
     }
     
-    float sin(const float alpha) {
+    inline float sin(const float alpha) {
         return std::sin(alpha);    
+    }
+
+    inline float abs(const float var) {
+        return std::abs(var);
     }
     
     template<typename T>
-    T random(const T min, const T max) {
+    inline T random(const T min, const T max) {
         return min + (max - min)*static_cast<T>(std::rand())/(static_cast<T>(RAND_MAX));
     }
 
-    void initializeRandom() {
+    inline void initializeRandom() {
         std::srand(static_cast<unsigned>(time(0)));
     }
 };

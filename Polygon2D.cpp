@@ -1,7 +1,12 @@
-#include "Matrix22.h"
-#include "Math.h"
-
 #include "Polygon2D.h"
+
+#include "PhysicObject.h"
+
+#include "Matrix22.h"
+
+#include "Point.h"
+#include "Color.h"
+
 #include "PhysicPolygonCollision.h"
 
 Polygon2D::Polygon2D(const std::vector<Point>& points, const Point& position,
@@ -82,7 +87,7 @@ void Polygon2D::Rotate(const float angle) {
 }
 
 
-const PhysicCollision* Polygon2D::getPhysicCollision(const PhysicObject& physicObject) const {
+PhysicCollision* Polygon2D::getPhysicCollision(const PhysicObject& physicObject) const {
     const PhysicObjectType objectType = physicObject.getObjectType();
     PhysicCollision* physicCollision = NULL;
     

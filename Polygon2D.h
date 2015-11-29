@@ -1,7 +1,9 @@
 #ifndef __POLYGON2D_H
 #define __POLYGON2D_H
 
+#include <vector>
 #include "PhysicObject.h"
+#include "Math.h"
 
 class Polygon2D : public PhysicObject {
     public:
@@ -16,7 +18,7 @@ class Polygon2D : public PhysicObject {
         virtual void Translate(const Vector2<float>& t);
         void Rotate(const float angle);
 
-        virtual const PhysicCollision* getPhysicCollision(const PhysicObject& physicObject) const;
+        virtual PhysicCollision* getPhysicCollision(const PhysicObject& physicObject) const;
         virtual void draw() const;
 
         const std::vector<Point>& getPoints() const;    

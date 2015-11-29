@@ -6,11 +6,11 @@
 #include <string>
 #include <iostream>
 
-#include "System.h"
 #include "PhysicRender.h"
 #include "PhysicContext.h"
-
 #include "PhysicPolygonCollision.h"
+
+#include "System.h"
 
 System::System(const unsigned int screenWidth, const unsigned int screenHeight, const std::string strNameWindow ) {
     this->screenWidth = screenWidth;
@@ -29,18 +29,20 @@ void System::start() {
     System::initializeSDLWindow();
     System::initializeOpenGLContext();
 
+    Math::initializeRandom();
+
     PhysicContext physicContext;
     PhysicRender physicRender(&physicContext);
 
     while(!finish)
     {
-        SDL_WaitEvent(&this->events);
+        while(SDL_PollEvent(&this->events)) {
+            if(this->events.window.event == SDL_WINDOWEVENT_CLOSE)
+                finish = true;
+        }
 
-        if(this->events.window.event == SDL_WINDOWEVENT_CLOSE)
-            finish = true;
-
+        physicContext.update();
         physicRender.draw(this->window);  
-
      }
 
     System::destroyOpenGLContext();

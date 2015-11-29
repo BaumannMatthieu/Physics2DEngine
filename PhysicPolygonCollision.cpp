@@ -1,5 +1,7 @@
 #include "PhysicPolygonCollision.h"
 
+#include "Math.h"
+
 PhysicPolygonCollision::PhysicPolygonCollision() {
     this->minimumTranslation = Vector2<float>(0.f, 0.f);  
 }
@@ -94,23 +96,19 @@ std::pair<float, float> PhysicPolygonCollision::projection(const Polygon2D& poly
 bool PhysicPolygonCollision::intersection(const std::pair<float, float>& p1,
                                           const std::pair<float, float>& p2,
                                           float& inter) const {
-    float i1 = p1.second - p2.first;    
+    
+    float var = Math::abs(p1.first - p2.second);
+    inter = Math::abs(p2.first - p1.second);
+    if(var < inter) {
+        float tmp = inter;
+        inter = var;
+        var = tmp;
+    }
 
-    if(i1 > 0.f) {
-        inter = i1;
+    if(var < p1.second - p1.first + p2.second - p2.first) {
         return true; 
     }
     
-    float i2 = p2.second - p1.first;    
-    
-    if(i2 > 0.f) {
-        inter = i2;
-        return true; 
-    }
-
     return false;
 }
 
-const Vector2<float>& PhysicPolygonCollision::getMinimunTranslationVector() const {
-    return this->minimumTranslation;
-}

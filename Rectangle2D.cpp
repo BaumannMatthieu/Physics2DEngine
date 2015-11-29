@@ -23,7 +23,7 @@ void Rectangle2D::Translate(const Vector2<float>& t) {
     PhysicObject::Translate(t);
 }
 
-const PhysicCollision* Rectangle2D::getPhysicCollision(const PhysicObject& physicObject) const {
+PhysicCollision* Rectangle2D::getPhysicCollision(const PhysicObject& physicObject) const {
     return NULL;
 }
 

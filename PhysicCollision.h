@@ -10,6 +10,10 @@ class PhysicCollision {
         
         virtual bool Compute(const PhysicObject& firstPhysicObj, 
                              const PhysicObject& secondPhysicObj) = 0;
+        const Vector2<float>& getMinimunTranslationVector() const;
+
+    protected:
+        Vector2<float> minimumTranslation;
 };
 
 #endif
